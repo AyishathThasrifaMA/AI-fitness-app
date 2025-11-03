@@ -6,7 +6,6 @@ export default function Home() {
   const [plan, setPlan] = useState(null)
   const [loading, setLoading] = useState(false)
 
-  // ✅ Inject html2pdf script dynamically
   useEffect(() => {
     const s = document.createElement('script')
     s.src = "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
@@ -17,9 +16,8 @@ export default function Home() {
 
   async function handleGenerate(data) {
     setLoading(true)
-    // Mocked plan generation (replace with server-side LLM call later)
     const generated = generatePlan(data)
-    await new Promise(r => setTimeout(r, 700)) // mimic API delay
+    await new Promise(r => setTimeout(r, 700)) 
     setPlan(generated)
     setLoading(false)
   }
@@ -38,7 +36,6 @@ export default function Home() {
   )
 }
 
-// 🧮 Helper: Calculate BMI category
 function bmiCategory(heightCm, weightKg) {
   const h = heightCm / 100
   const bmi = weightKg / (h * h)
@@ -48,7 +45,6 @@ function bmiCategory(heightCm, weightKg) {
   return 'Obese'
 }
 
-// ⚙️ Simple deterministic mock plan generator
 function generatePlan(data) {
   const { name, age, gender, height, weight, goal, level, location, diet } = data
   const bmi = (weight / ((height / 100) ** 2)).toFixed(1)

@@ -2,17 +2,13 @@ export default function PlanCard({ plan }) {
   const { meta, workouts, meals, tips, generatedAt } = plan
 
   function exportPDF() {
-    // use html2pdf (loaded from CDN in index) to export the plan element
+  
     const el = document.getElementById('plan-to-export')
     if (!el) return alert('Export element not found')
-    // html2pdf usage
-    // global html2pdf available via script tag in index
-    // options can be adjusted in real app
     window.html2pdf().from(el).save(`${meta.name || 'plan'}-fitness-plan.pdf`)
   }
 
   function speak(text) {
-    // placeholder - integrate ElevenLabs or other TTS via server-side API
     alert('TTS placeholder:\n' + text.slice(0, 200) + '... (Replace with ElevenLabs integration)')
   }
 
